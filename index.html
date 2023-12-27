@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+    background-size: cover;
+  }
+  .outer-container {
+    border: 5px solid #2c3e50;
+    padding: 20px;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.2);
+    border-radius: 15px;
+    background-color: white;
+  }
+  .container {
+    margin-top: 20px;
+  }
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #2c3e50;
+  }
+  .pie-chart-container {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  .pie-chart {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 3px solid #34495e;
+    background: conic-gradient(
+      #e74c3c 0% 16.666%, 
+      #3498db 16.666% 33.332%,
+      #2ecc71 33.332% 49.998%,
+      #f1c40f 49.998% 66.664%,
+      #e67e22 66.664% 83.33%,
+      #9b59b6 83.33% 100%
+    );
+    margin: 0 auto;
+    transition: transform 2s;
+  }
+  .pointer {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 100px solid black;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -100%) rotate(0deg);
+  }
+  .small-circle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: gray;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .spin-button {
+    display: block;
+    margin: 80px auto 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px #2980b9;
+    cursor: pointer;
+  }
+  .spin-button:hover {
+    background-color: #2980b9;
+  }
+</style>
+</head>
+<body>
+
+<div class="outer-container">
+  <div class="container">
+    <div class="title">中国政企合作基金抽奖活动</div>
+    <div class="pie-chart-container">
+      <div class="pie-chart" id="pieChart"></div>
+      <div class="pointer"></div>
+      <div class="small-circle"></div>
+    </div>
+    <button class="spin-button" onclick="spin()">开始抽奖</button>
+  </div>
+</div>
+
+<script>
+let currentDegree = 0;
+
+function spin() {
+  var pieChart = document.getElementById("pieChart");
+  var additionalDegree = 360 * 2 + Math.floor(Math.random() * 360);
+  currentDegree += additionalDegree;
+  pieChart.style.transform = "rotate(" + currentDegree + "deg)";
+}
+</script>
+
+</body>
+</html>
